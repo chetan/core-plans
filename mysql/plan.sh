@@ -36,9 +36,9 @@ pkg_include_dirs=(include)
 pkg_lib_dirs=(lib)
 
 do_build() {
-  cmake . -DLOCAL_BOOST_DIR=$(pkg_path_for core/boost159) \
-          -DBOOST_INCLUDE_DIR=$(pkg_path_for core/boost159)/include \
-          -DWITH_BOOST=$(pkg_path_for core/boost159) \
-          -DCMAKE_INSTALL_PREFIX=$pkg_prefix
+  cmake . -DLOCAL_BOOST_DIR="$(pkg_path_for core/boost159)" \
+          -DBOOST_INCLUDE_DIR="$(pkg_path_for core/boost159)"/include \
+          -DWITH_BOOST="$(pkg_path_for core/boost159)" \
+          -DCMAKE_INSTALL_PREFIX="$pkg_prefix"
   make
 }
