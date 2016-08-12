@@ -2,9 +2,22 @@ pkg_name=mysql
 pkg_origin=core
 pkg_version=5.7.14
 pkg_maintainer='The Habitat Maintainers <humans@habitat.sh>'
-pkg_license=('GPLv2')
+pkg_license=('GPL-2.0')
 pkg_source=http://dev.mysql.com/get/Downloads/MySQL-5.7/${pkg_name}-${pkg_version}.tar.gz
 pkg_shasum=f7415bdac2ca8bbccd77d4f22d8a0bdd7280b065bd646a71a506b77c7a8bd169
+
+pkg_upstream_url=https://www.mysql.com/
+pkg_description=$(cat << EOF
+Starts MySQL with a basic configuration. Configurable at run time:
+
+* root_password: the password for the mysql root user, empty by default
+* app_username: the username for an application that will connect to the database server, false by default
+* app_password: the password for the app user
+* bind: the bind address to listen for connections, default 127.0.0.1
+
+Set the app_username and app_password at runtime to have that user created, it won't be otherwise.
+EOF
+)
 
 pkg_deps=(
   core/glibc
