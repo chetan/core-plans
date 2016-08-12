@@ -30,6 +30,7 @@ pkg_deps=(
   core/procps-ng
   core/inetutils
   core/ncurses
+  core/openssl
 )
 
 pkg_build_deps=(
@@ -52,6 +53,11 @@ do_build() {
   cmake . -DLOCAL_BOOST_DIR="$(pkg_path_for core/boost159)" \
           -DBOOST_INCLUDE_DIR="$(pkg_path_for core/boost159)"/include \
           -DWITH_BOOST="$(pkg_path_for core/boost159)" \
+          -DWITH_SSL=yes \
           -DCMAKE_INSTALL_PREFIX="$pkg_prefix"
   make
+}
+
+do_check() {
+  ctest
 }
