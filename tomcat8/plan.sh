@@ -15,8 +15,8 @@ pkg_deps=(
 )
 pkg_expose=(8080 8443)
 
-pkg_svc_user="root"
-pkg_svc_group="root"
+pkg_svc_user="hab"
+pkg_svc_group="hab"
 
 # The default implementation extracts your tarball source file into HAB_CACHE_SRC_PATH. The
 # supported archives are: .tar, .tar.bz2, .tar.gz, .tar.xz, .rar, .zip, .Z, .7z. If the file
