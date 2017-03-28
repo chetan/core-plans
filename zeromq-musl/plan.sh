@@ -9,7 +9,7 @@ pkg_shasum=e99f44fde25c2e4cb84ce440f87ca7d3fe3271c2b8cfbc67d55e4de25e6fe378
 pkg_deps=(core/libsodium-musl)
 pkg_build_deps=(
   chetan/gcc-musl core/coreutils core/make
-  core/libsodium-musl core/pkg-config core/diffutils
+  core/pkg-config core/diffutils core/patchelf
 )
 pkg_include_dirs=(include)
 pkg_lib_dirs=(lib)
@@ -25,18 +25,15 @@ do_prepare() {
   CFLAGS="$flags"
   CXXFLAGS="$flags"
   CPPFLAGS="$flags"
-  sodium_CFLAGS="pkg-config --cflags libsodium"
-  sodium_LIBS="pkg-config --libs libsodium"
+  sodium_CFLAGS="$(pkg-config --cflags libsodium)"
+  sodium_LIBS="$(pkg-config --libs libsodium)"
+  LIBS="$LIBS $sodium_LIBS"
 }
 
 do_build() {
-  # ./configure --prefix="$pkg_prefix" \
-  PKG_CONFIG="pkg-config --libs" ./configure --prefix="$pkg_prefix" \
+  LIBS="$LIBS" ./configure --prefix="$pkg_prefix" \
               --host x86_64-linux-musl \
               --with-libsodium
-              # --enable-static \
-              # --disable-shared
-  echo $CFLAGS
   make
 }
 
