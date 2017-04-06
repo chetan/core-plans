@@ -1,0 +1,10 @@
+pkg_name=ucl
+pkg_origin=core
+pkg_version=1.03
+pkg_license=('GPL')
+pkg_source=http://www.oberhumer.com/opensource/ucl/download/${pkg_name}-${pkg_version}.tar.gz
+pkg_shasum=b865299ffd45d73412293369c9754b07637680e5c826915f097577cd27350348
+pkg_deps=()
+pkg_build_deps=(core/gcc core/make)
+pkg_include_dirs=(include)
+pkg_lib_dirs=(lib)
